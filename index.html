@@ -77,19 +77,20 @@
 <body>
 
 <div class="card">
-  <h2>CURP & RFC Generator</h2>
+  <!-- <h2>CURP & RFC Generator</h2> -->
+  <h2>CURP & RFC for MXN deposits</h2>
 
-  <label>First Name: <input type="text" id="firstName"></label>
-  <label>Paternal Last Name: <input type="text" id="lastName1"></label>
-  <label>Maternal Last Name: <input type="text" id="lastName2"></label>
-  <label>Birth Date: <input type="date" id="birthDate"></label>
-  <label>Gender:
+  <label>First Name:* <input type="text" placeholder="Enter your first name" id="firstName"></label>
+  <label>Paternal Last Name:* <input type="text" placeholder="Enter your paternal last name" id="lastName1"></label>
+  <label>Maternal Last Name: <input type="text" placeholder="Enter your maternal last name" id="lastName2"></label>
+  <label>Birth Date:* <input type="date" id="birthDate"></label>
+  <label>Gender:*
     <select id="gender">
       <option value="H">Male</option>
       <option value="M">Female</option>
     </select>
   </label>
-  <label>State:
+  <label>State:*
     <select id="stateCode">
       <option value="DF">Ciudad de México</option>
       <option value="AS">Aguascalientes</option>
@@ -133,7 +134,7 @@
 </div>
 
 <script>
-/* === JS логика из предыдущей версии === */
+
 function cleanString(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z]/g, "");
 }
