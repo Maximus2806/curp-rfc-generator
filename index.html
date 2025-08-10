@@ -1,202 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>CURP & RFC Generator</title>
-<style>
-  body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    padding: 40px;
-  }
-  .card {
-    background: white;
-    padding: 20px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: 500;
-    color: #555;
-  }
-  input, select {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    font-size: 14px;
-  }
-  input:focus, select:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
-    outline: none;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 25px;
-    background: #4a90e2;
-    color: white;
-    font-size: 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-  }
-  button:hover {
-    background: #3b7dc1;
-  }
-  button:active {
-    transform: scale(0.98);
-  }
-  .result {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f0f4f9;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #333;
-    white-space: pre-line;
-  }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CURP & RFC Generator</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+      }
+      .card {
+        background: white;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 500;
+        color: #555;
+      }
+      input,
+      select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-size: 14px;
+      }
+      input:focus,
+      select:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
+        outline: none;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 25px;
+        background: #4a90e2;
+        color: white;
+        font-size: 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+      }
+      button:hover {
+        background: #3b7dc1;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      .result {
+        margin-top: 20px;
+        padding: 10px;
+        background: #f0f4f9;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #333;
+        white-space: pre-line;
+      }
+      .result:empty {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>CURP & RFC for MXN deposits</h2>
 
-<div class="card">
-  <!-- <h2>CURP & RFC Generator</h2> -->
-  <h2>CURP & RFC for MXN deposits</h2>
+      <label>First Name:* <input type="text" placeholder="Enter your first name" id="firstName" /></label>
+      <label
+        >Paternal Last Name:* <input type="text" placeholder="Enter your paternal last name" id="lastName1"
+      /></label>
+      <label
+        >Maternal Last Name: <input type="text" placeholder="Enter your maternal last name" id="lastName2"
+      /></label>
+      <label>Birth Date:* <input type="date" id="birthDate" /></label>
+      <label
+        >Gender:*
+        <select id="gender">
+          <option value="H">Male</option>
+          <option value="M">Female</option>
+        </select>
+      </label>
+      <label
+        >State:*
+        <select id="stateCode">
+          <option value="DF">Ciudad de México</option>
+          <option value="AS">Aguascalientes</option>
+          <option value="BC">Baja California</option>
+          <option value="BS">Baja California Sur</option>
+          <option value="CC">Campeche</option>
+          <option value="CL">Coahuila</option>
+          <option value="CM">Colima</option>
+          <option value="CS">Chiapas</option>
+          <option value="CH">Chihuahua</option>
+          <option value="DG">Durango</option>
+          <option value="GT">Guanajuato</option>
+          <option value="GR">Guerrero</option>
+          <option value="HG">Hidalgo</option>
+          <option value="JC">Jalisco</option>
+          <option value="MC">México</option>
+          <option value="MN">Michoacán</option>
+          <option value="MS">Morelos</option>
+          <option value="NT">Nayarit</option>
+          <option value="NL">Nuevo León</option>
+          <option value="OC">Oaxaca</option>
+          <option value="PL">Puebla</option>
+          <option value="QT">Querétaro</option>
+          <option value="QR">Quintana Roo</option>
+          <option value="SP">San Luis Potosí</option>
+          <option value="SL">Sinaloa</option>
+          <option value="SR">Sonora</option>
+          <option value="TC">Tabasco</option>
+          <option value="TS">Tamaulipas</option>
+          <option value="TL">Tlaxcala</option>
+          <option value="VZ">Veracruz</option>
+          <option value="YN">Yucatán</option>
+          <option value="ZS">Zacatecas</option>
+          <option value="NE">Nacido en el Extranjero</option>
+        </select>
+      </label>
 
-  <label>First Name:* <input type="text" placeholder="Enter your first name" id="firstName"></label>
-  <label>Paternal Last Name:* <input type="text" placeholder="Enter your paternal last name" id="lastName1"></label>
-  <label>Maternal Last Name: <input type="text" placeholder="Enter your maternal last name" id="lastName2"></label>
-  <label>Birth Date:* <input type="date" id="birthDate"></label>
-  <label>Gender:*
-    <select id="gender">
-      <option value="H">Male</option>
-      <option value="M">Female</option>
-    </select>
-  </label>
-  <label>State:*
-    <select id="stateCode">
-      <option value="DF">Ciudad de México</option>
-      <option value="AS">Aguascalientes</option>
-      <option value="BC">Baja California</option>
-      <option value="BS">Baja California Sur</option>
-      <option value="CC">Campeche</option>
-      <option value="CL">Coahuila</option>
-      <option value="CM">Colima</option>
-      <option value="CS">Chiapas</option>
-      <option value="CH">Chihuahua</option>
-      <option value="DG">Durango</option>
-      <option value="GT">Guanajuato</option>
-      <option value="GR">Guerrero</option>
-      <option value="HG">Hidalgo</option>
-      <option value="JC">Jalisco</option>
-      <option value="MC">México</option>
-      <option value="MN">Michoacán</option>
-      <option value="MS">Morelos</option>
-      <option value="NT">Nayarit</option>
-      <option value="NL">Nuevo León</option>
-      <option value="OC">Oaxaca</option>
-      <option value="PL">Puebla</option>
-      <option value="QT">Querétaro</option>
-      <option value="QR">Quintana Roo</option>
-      <option value="SP">San Luis Potosí</option>
-      <option value="SL">Sinaloa</option>
-      <option value="SR">Sonora</option>
-      <option value="TC">Tabasco</option>
-      <option value="TS">Tamaulipas</option>
-      <option value="TL">Tlaxcala</option>
-      <option value="VZ">Veracruz</option>
-      <option value="YN">Yucatán</option>
-      <option value="ZS">Zacatecas</option>
-      <option value="NE">Nacido en el Extranjero</option>
-    </select>
-  </label>
+      <div style="display: flex; gap: 10px; margin-top: 20px">
+        <button type="button" onclick="generateRandom()">Fill random data</button>
+        <button type="button" onclick="generateFromForm()">Generate</button>
+      </div>
 
-  <button onclick="generate()">Generate</button>
+      <div class="result" id="result"></div>
+    </div>
 
-  <div class="result" id="result"></div>
-</div>
+    <script>
+      function cleanString(str) {
+        return str
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toUpperCase()
+          .replace(/[^A-Z]/g, '');
+      }
+      function firstInternalVowel(str) {
+        const match = str.slice(1).match(/[AEIOU]/);
+        return match ? match[0] : 'X';
+      }
+      function firstInternalConsonant(str) {
+        const match = str.slice(1).match(/[BCDFGHJKLMNÑPQRSTVWXYZ]/);
+        return match ? match[0] : 'X';
+      }
+      const mexicanStates = {
+        AS: 'Aguascalientes',
+        BC: 'Baja California',
+        BS: 'Baja California Sur',
+        CC: 'Campeche',
+        CL: 'Coahuila',
+        CM: 'Colima',
+        CS: 'Chiapas',
+        CH: 'Chihuahua',
+        DF: 'Ciudad de México',
+        DG: 'Durango',
+        GT: 'Guanajuato',
+        GR: 'Guerrero',
+        HG: 'Hidalgo',
+        JC: 'Jalisco',
+        MC: 'México',
+        MN: 'Michoacán',
+        MS: 'Morelos',
+        NT: 'Nayarit',
+        NL: 'Nuevo León',
+        OC: 'Oaxaca',
+        PL: 'Puebla',
+        QT: 'Querétaro',
+        QR: 'Quintana Roo',
+        SP: 'San Luis Potosí',
+        SL: 'Sinaloa',
+        SR: 'Sonora',
+        TC: 'Tabasco',
+        TS: 'Tamaulipas',
+        TL: 'Tlaxcala',
+        VZ: 'Veracruz',
+        YN: 'Yucatán',
+        ZS: 'Zacatecas',
+        NE: 'Nacido en el Extranjero',
+      };
+      function getValidStateCode(code) {
+        const upperCode = code.toUpperCase();
+        return mexicanStates[upperCode] ? upperCode : 'NE';
+      }
+      function generateCURP(firstName, lastName1, lastName2, birthDate, gender, stateCode) {
+        lastName1 = cleanString(lastName1);
+        lastName2 = cleanString(lastName2);
+        firstName = cleanString(firstName);
+        const year = birthDate.getFullYear();
+        const yy = String(year).slice(-2);
+        const mm = String(birthDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(birthDate.getDate()).padStart(2, '0');
+        const part1 = lastName1[0] + firstInternalVowel(lastName1) + (lastName2[0] || 'X') + (firstName[0] || 'X');
+        const part2 = yy + mm + dd + gender.toUpperCase() + getValidStateCode(stateCode);
+        const part3 =
+          firstInternalConsonant(lastName1) + firstInternalConsonant(lastName2) + firstInternalConsonant(firstName);
+        const part4 = Math.floor(Math.random() * 100)
+          .toString()
+          .padStart(2, '0');
+        return (part1 + part2 + part3 + part4).toUpperCase();
+      }
+      function generateRFC(firstName, lastName1, lastName2, birthDate) {
+        lastName1 = cleanString(lastName1);
+        lastName2 = cleanString(lastName2);
+        firstName = cleanString(firstName);
+        const year = birthDate.getFullYear();
+        const yy = String(year).slice(-2);
+        const mm = String(birthDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(birthDate.getDate()).padStart(2, '0');
+        const part1 = lastName1[0] + firstInternalVowel(lastName1) + (lastName2[0] || 'X') + (firstName[0] || 'X');
+        const part2 = yy + mm + dd;
+        const homoclave = Array.from({ length: 3 }, () =>
+          String.fromCharCode(65 + Math.floor(Math.random() * 26))
+        ).join('');
+        return (part1 + part2 + homoclave).toUpperCase();
+      }
+      function generateFromForm() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName1 = document.getElementById('lastName1').value;
+        const lastName2 = document.getElementById('lastName2').value;
+        const birthDate = new Date(document.getElementById('birthDate').value);
+        const gender = document.getElementById('gender').value;
+        const stateCode = document.getElementById('stateCode').value;
 
-<script>
+        if (!firstName || !lastName1 || !birthDate.getTime()) {
+          document.getElementById('result').textContent = 'Please fill all required fields.';
+          return;
+        }
 
-function cleanString(str) {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z]/g, "");
-}
-function firstInternalVowel(str) {
-  const match = str.slice(1).match(/[AEIOU]/);
-  return match ? match[0] : 'X';
-}
-function firstInternalConsonant(str) {
-  const match = str.slice(1).match(/[BCDFGHJKLMNÑPQRSTVWXYZ]/);
-  return match ? match[0] : 'X';
-}
-const mexicanStates = {AS:"Aguascalientes",BC:"Baja California",BS:"Baja California Sur",CC:"Campeche",CL:"Coahuila",CM:"Colima",CS:"Chiapas",CH:"Chihuahua",DF:"Ciudad de México",DG:"Durango",GT:"Guanajuato",GR:"Guerrero",HG:"Hidalgo",JC:"Jalisco",MC:"México",MN:"Michoacán",MS:"Morelos",NT:"Nayarit",NL:"Nuevo León",OC:"Oaxaca",PL:"Puebla",QT:"Querétaro",QR:"Quintana Roo",SP:"San Luis Potosí",SL:"Sinaloa",SR:"Sonora",TC:"Tabasco",TS:"Tamaulipas",TL:"Tlaxcala",VZ:"Veracruz",YN:"Yucatán",ZS:"Zacatecas",NE:"Nacido en el Extranjero"};
-function getValidStateCode(code) {
-  const upperCode = code.toUpperCase();
-  return mexicanStates[upperCode] ? upperCode : "NE";
-}
-function generateCURP(firstName, lastName1, lastName2, birthDate, gender, stateCode) {
-  lastName1 = cleanString(lastName1);
-  lastName2 = cleanString(lastName2);
-  firstName = cleanString(firstName);
-  const year = birthDate.getFullYear();
-  const yy = String(year).slice(-2);
-  const mm = String(birthDate.getMonth() + 1).padStart(2, '0');
-  const dd = String(birthDate.getDate()).padStart(2, '0');
-  const part1 = lastName1[0] + firstInternalVowel(lastName1) + (lastName2[0] || 'X') + (firstName[0] || 'X');
-  const part2 = yy + mm + dd + gender.toUpperCase() + getValidStateCode(stateCode);
-  const part3 = firstInternalConsonant(lastName1) + firstInternalConsonant(lastName2) + firstInternalConsonant(firstName);
-  const part4 = Math.floor(Math.random() * 100).toString().padStart(2, '0');
-  return (part1 + part2 + part3 + part4).toUpperCase();
-}
-function generateRFC(firstName, lastName1, lastName2, birthDate) {
-  lastName1 = cleanString(lastName1);
-  lastName2 = cleanString(lastName2);
-  firstName = cleanString(firstName);
-  const year = birthDate.getFullYear();
-  const yy = String(year).slice(-2);
-  const mm = String(birthDate.getMonth() + 1).padStart(2, '0');
-  const dd = String(birthDate.getDate()).padStart(2, '0');
-  const part1 = lastName1[0] + firstInternalVowel(lastName1) + (lastName2[0] || 'X') + (firstName[0] || 'X');
-  const part2 = yy + mm + dd;
-  const homoclave = Array.from({ length: 3 }, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('');
-  return (part1 + part2 + homoclave).toUpperCase();
-}
-function generate() {
-  const firstName = document.getElementById("firstName").value;
-  const lastName1 = document.getElementById("lastName1").value;
-  const lastName2 = document.getElementById("lastName2").value;
-  const birthDate = new Date(document.getElementById("birthDate").value);
-  const gender = document.getElementById("gender").value;
-  const stateCode = document.getElementById("stateCode").value;
-  
-  if (!firstName || !lastName1 || !birthDate.getTime()) {
-    document.getElementById("result").textContent = "Please fill all required fields.";
-    return;
-  }
-  
-  const curp = generateCURP(firstName, lastName1, lastName2, birthDate, gender, stateCode);
-  const rfc = generateRFC(firstName, lastName1, lastName2, birthDate);
-  
-  document.getElementById("result").textContent = `CURP: ${curp}\nRFC: ${rfc}`;
-}
-</script>
+        const curp = generateCURP(firstName, lastName1, lastName2, birthDate, gender, stateCode);
+        const rfc = generateRFC(firstName, lastName1, lastName2, birthDate);
 
-</body>
+        document.getElementById('result').textContent = `CURP: ${curp}\nRFC: ${rfc}`;
+      }
+
+      //Generate random data
+      const maleNames = ['Juan', 'José', 'Carlos', 'Luis', 'Miguel', 'Pedro', 'Jorge', 'Andrés'];
+      const femaleNames = ['María', 'Guadalupe', 'Ana', 'Laura', 'Patricia', 'Carla', 'Lucía', 'Verónica'];
+      const lastNames = ['García', 'Martínez', 'López', 'Hernández', 'González', 'Pérez', 'Rodríguez', 'Sánchez'];
+
+      function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function getRandomDate(startYear, endYear) {
+        const year = Math.floor(Math.random() * (endYear - startYear + 1)) + startYear;
+        const month = Math.floor(Math.random() * 12);
+        const day = Math.floor(Math.random() * 28) + 1;
+        return new Date(year, month, day);
+      }
+
+      function generateRandom() {
+        // Random gender
+        const gender = Math.random() > 0.5 ? 'H' : 'M';
+
+        // Names surnames
+        const firstName = gender === 'Male' ? getRandomItem(maleNames) : getRandomItem(femaleNames);
+        const lastName1 = getRandomItem(lastNames);
+        const lastName2 = getRandomItem(lastNames);
+
+        // Date of birth — from 1960 to 2005 (18+ years)
+        const birthDate = getRandomDate(1960, 2005);
+        const birthDateStr = birthDate.toISOString().split('T')[0]; // формат yyyy-mm-dd для input date
+
+        //States
+        const stateCodes = {
+          AS: 'Aguascalientes',
+          BC: 'Baja California',
+          BS: 'Baja California Sur',
+          CC: 'Campeche',
+          CL: 'Coahuila',
+          CM: 'Colima',
+          CS: 'Chiapas',
+          CH: 'Chihuahua',
+          DF: 'Ciudad de México',
+          DG: 'Durango',
+          GT: 'Guanajuato',
+          GR: 'Guerrero',
+          HG: 'Hidalgo',
+          JC: 'Jalisco',
+          MC: 'México',
+          MN: 'Michoacán',
+          MS: 'Morelos',
+          NT: 'Nayarit',
+          NL: 'Nuevo León',
+          OC: 'Oaxaca',
+          PL: 'Puebla',
+          QT: 'Querétaro',
+          QR: 'Quintana Roo',
+          SP: 'San Luis Potosí',
+          SL: 'Sinaloa',
+          SR: 'Sonora',
+          TC: 'Tabasco',
+          TS: 'Tamaulipas',
+          TL: 'Tlaxcala',
+          VZ: 'Veracruz',
+          YN: 'Yucatán',
+          ZS: 'Zacatecas',
+          NE: 'Nacido en el Extranjero',
+        };
+
+        // State
+        const states = Object.keys(stateCodes);
+        console.log(states);
+        const randomeState = getRandomItem(states);
+        console.log(randomeState);
+
+        // Filling the form
+        document.getElementById('firstName').value = firstName;
+        document.getElementById('lastName1').value = lastName1;
+        document.getElementById('lastName2').value = lastName2;
+        document.getElementById('birthDate').value = birthDateStr;
+        document.getElementById('gender').value = gender;
+        console.log(stateCodes[randomeState]);
+        document.getElementById('stateCode').value = randomeState;
+      }
+    </script>
+  </body>
 </html>
