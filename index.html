@@ -4,70 +4,135 @@
 <meta charset="UTF-8">
 <title>CURP & RFC Generator</title>
 <style>
-  body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; }
-  label { display: block; margin-top: 10px; }
-  input, select, button { width: 100%; padding: 6px; margin-top: 4px; }
-  .result { margin-top: 20px; font-weight: bold; }
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+  .card {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+    color: #555;
+  }
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 14px;
+  }
+  input:focus, select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.4);
+    outline: none;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: #4a90e2;
+    color: white;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  button:hover {
+    background: #3b7dc1;
+  }
+  button:active {
+    transform: scale(0.98);
+  }
+  .result {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f0f4f9;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #333;
+    white-space: pre-line;
+  }
 </style>
 </head>
 <body>
 
-<h2>CURP & RFC Generator</h2>
+<div class="card">
+  <h2>CURP & RFC Generator</h2>
 
-<label>First Name: <input type="text" id="firstName"></label>
-<label>Last Name 1: <input type="text" id="lastName1"></label>
-<label>Last Name 2: <input type="text" id="lastName2"></label>
-<label>Birth Date: <input type="date" id="birthDate"></label>
-<label>Gender:
-  <select id="gender">
-    <option value="H">Male</option>
-    <option value="M">Female</option>
-  </select>
-</label>
-<label>State:
-  <select id="stateCode">
-    <option value="DF">Ciudad de México</option>
-    <option value="AS">Aguascalientes</option>
-    <option value="BC">Baja California</option>
-    <option value="BS">Baja California Sur</option>
-    <option value="CC">Campeche</option>
-    <option value="CL">Coahuila</option>
-    <option value="CM">Colima</option>
-    <option value="CS">Chiapas</option>
-    <option value="CH">Chihuahua</option>
-    <option value="DG">Durango</option>
-    <option value="GT">Guanajuato</option>
-    <option value="GR">Guerrero</option>
-    <option value="HG">Hidalgo</option>
-    <option value="JC">Jalisco</option>
-    <option value="MC">México</option>
-    <option value="MN">Michoacán</option>
-    <option value="MS">Morelos</option>
-    <option value="NT">Nayarit</option>
-    <option value="NL">Nuevo León</option>
-    <option value="OC">Oaxaca</option>
-    <option value="PL">Puebla</option>
-    <option value="QT">Querétaro</option>
-    <option value="QR">Quintana Roo</option>
-    <option value="SP">San Luis Potosí</option>
-    <option value="SL">Sinaloa</option>
-    <option value="SR">Sonora</option>
-    <option value="TC">Tabasco</option>
-    <option value="TS">Tamaulipas</option>
-    <option value="TL">Tlaxcala</option>
-    <option value="VZ">Veracruz</option>
-    <option value="YN">Yucatán</option>
-    <option value="ZS">Zacatecas</option>
-    <option value="NE">Nacido en el Extranjero</option>
-  </select>
-</label>
+  <label>First Name: <input type="text" id="firstName"></label>
+  <label>Last Name 1: <input type="text" id="lastName1"></label>
+  <label>Last Name 2: <input type="text" id="lastName2"></label>
+  <label>Birth Date: <input type="date" id="birthDate"></label>
+  <label>Gender:
+    <select id="gender">
+      <option value="H">Male</option>
+      <option value="M">Female</option>
+    </select>
+  </label>
+  <label>State:
+    <select id="stateCode">
+      <option value="DF">Ciudad de México</option>
+      <option value="AS">Aguascalientes</option>
+      <option value="BC">Baja California</option>
+      <option value="BS">Baja California Sur</option>
+      <option value="CC">Campeche</option>
+      <option value="CL">Coahuila</option>
+      <option value="CM">Colima</option>
+      <option value="CS">Chiapas</option>
+      <option value="CH">Chihuahua</option>
+      <option value="DG">Durango</option>
+      <option value="GT">Guanajuato</option>
+      <option value="GR">Guerrero</option>
+      <option value="HG">Hidalgo</option>
+      <option value="JC">Jalisco</option>
+      <option value="MC">México</option>
+      <option value="MN">Michoacán</option>
+      <option value="MS">Morelos</option>
+      <option value="NT">Nayarit</option>
+      <option value="NL">Nuevo León</option>
+      <option value="OC">Oaxaca</option>
+      <option value="PL">Puebla</option>
+      <option value="QT">Querétaro</option>
+      <option value="QR">Quintana Roo</option>
+      <option value="SP">San Luis Potosí</option>
+      <option value="SL">Sinaloa</option>
+      <option value="SR">Sonora</option>
+      <option value="TC">Tabasco</option>
+      <option value="TS">Tamaulipas</option>
+      <option value="TL">Tlaxcala</option>
+      <option value="VZ">Veracruz</option>
+      <option value="YN">Yucatán</option>
+      <option value="ZS">Zacatecas</option>
+      <option value="NE">Nacido en el Extranjero</option>
+    </select>
+  </label>
 
-<button onclick="generate()">Generate</button>
+  <button onclick="generate()">Generate</button>
 
-<div class="result" id="result"></div>
+  <div class="result" id="result"></div>
+</div>
 
 <script>
-// === JS из предыдущей версии вставляем сюда ===
+/* === JS логика из предыдущей версии === */
 function cleanString(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z]/g, "");
 }
@@ -127,8 +192,9 @@ function generate() {
   const curp = generateCURP(firstName, lastName1, lastName2, birthDate, gender, stateCode);
   const rfc = generateRFC(firstName, lastName1, lastName2, birthDate);
   
-  document.getElementById("result").innerHTML = `CURP: ${curp}<br>RFC: ${rfc}`;
+  document.getElementById("result").textContent = `CURP: ${curp}\nRFC: ${rfc}`;
 }
 </script>
+
 </body>
 </html>
